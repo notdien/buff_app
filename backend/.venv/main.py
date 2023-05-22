@@ -4,7 +4,12 @@ from flask import render_template
 import json
 import random
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='../../frontend/templates')
+
+# routing to a homepage
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 # creates a new list for a user
 @app.route('/create-list', methods=['POST'])
