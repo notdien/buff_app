@@ -17,24 +17,24 @@
         Enter your info below!
     </h3>
 
-    <form action ="/create-list" method="post">
+    <form id="myForm">
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Name</label>
-            <input id="name" type="name" class="form-control" id="exampleFormControlInput1" placeholder="Enter your name">
+            <label for="name" class="form-label">Name</label>
+            <input id="name" type="text" class="form-control" placeholder="Enter your name" required>
         </div>
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Age</label>
-            <input id="age" type="age" class="form-control" id="exampleFormControlInput1" placeholder="Enter your age">
+            <label for="age" class="form-label">Age</label>
+            <input id="age" type="text" class="form-control" placeholder="Enter your age" required>
         </div>
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Body Weight</label>
-            <input id="weight" type="height" class="form-control" id="exampleFormControlInput1" placeholder="Enter your weight">
+            <label for="weight" class="form-label">Body Weight</label>
+            <input id="weight" type="text" class="form-control" placeholder="Enter your weight" required>
         </div>
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Height</label>
-            <input type="height" class="form-control" id="exampleFormControlInput1" placeholder="Enter your height">
+            <label for="height" class="form-label">Height</label>
+            <input id="height" type="text" class="form-control" placeholder="Enter your height" required>
         </div>
-    
+
         <input class="btn btn-primary" onclick="createList()" id="submit" type="submit" value="Submit">
     </form>
 
@@ -45,29 +45,39 @@
     <script>
 
         function createList() {
-            var user_data = {
-                name : $("#name").val(),
-                age : $("#age").val(),
-                weight : $("#weight").val(),
-                height : $("height").val(),
-            };
 
-            $.ajax({
-                type: 'POST',
-                url: "http://127.0.0.1:5000/create-list",
-                contentType: 'application/json',
-                data:JSON.stringify(user_data),
-                success: function(response) {
-                    console.log(response);
-                },
-                error: function(xhr, status, error) {
-                    console.log(error);
-                }
-            })
-
-
+            $(document).ready(function() {
+                $('#myForm').submit(function(event) {
+                    event.preventDefault();
+                    
+                    var name = $('#name').val();
+                    var age = $("#age").val();
+                    var weight = $("#weight").val();
+                    var height = $("#height").val();
+            
+                    var data = {
+                        'name' : name,
+                        'age' : age,
+                        'weight' : weight,
+                        'height' : height
+                    };
+                    
+                    $.ajax ({
+                        url: 'http://127.0.0.1:5000/create-list',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(data),
+                        success: function(response) {
+                            console.log(response);
+                            $("#mydiv").text(response.result);
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+                });
+            });
         }
-
     </script>
 
 </body>
