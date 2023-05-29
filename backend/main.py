@@ -5,7 +5,7 @@ import json
 import uuid
 
 
-app = Flask(__name__, template_folder='../../frontend/templates')
+app = Flask(__name__, template_folder='../frontend/templates')
 # app = Flask(__name__)
 
 # routing to a homepage
