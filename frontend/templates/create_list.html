@@ -17,24 +17,26 @@
         Enter your info below!
     </h3>
 
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Name</label>
-        <input id="name" type="name" class="form-control" id="exampleFormControlInput1" placeholder="Enter your name">
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Age</label>
-        <input id="age" type="age" class="form-control" id="exampleFormControlInput1" placeholder="Enter your age">
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Body Weight</label>
-        <input id="weight" type="height" class="form-control" id="exampleFormControlInput1" placeholder="Enter your weight">
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Height</label>
-        <input type="height" class="form-control" id="exampleFormControlInput1" placeholder="Enter your height">
-    </div>
-
-    <input class="btn btn-primary" onclick="createList()" id="submit" type="submit" value="Submit">
+    <form action ="/create-list" method="post">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name</label>
+            <input id="name" type="name" class="form-control" id="exampleFormControlInput1" placeholder="Enter your name">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Age</label>
+            <input id="age" type="age" class="form-control" id="exampleFormControlInput1" placeholder="Enter your age">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Body Weight</label>
+            <input id="weight" type="height" class="form-control" id="exampleFormControlInput1" placeholder="Enter your weight">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Height</label>
+            <input type="height" class="form-control" id="exampleFormControlInput1" placeholder="Enter your height">
+        </div>
+    
+        <input class="btn btn-primary" onclick="createList()" id="submit" type="submit" value="Submit">
+    </form>
 
     <div id = "mydiv" name = "mydiv"></div>
 
@@ -53,11 +55,12 @@
             $.ajax({
                 type: 'POST',
                 url: "http://127.0.0.1:5000/create-list",
-                data: user_data,
+                contentType: 'application/json',
+                data:JSON.stringify(user_data),
                 success: function(response) {
                     console.log(response);
                 },
-                error: function(error) {
+                error: function(xhr, status, error) {
                     console.log(error);
                 }
             })

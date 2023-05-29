@@ -2,9 +2,11 @@
 from flask import Flask, request
 from flask import render_template
 import json
-import random
+import uuid
+
 
 app = Flask(__name__, template_folder='../../frontend/templates')
+# app = Flask(__name__)
 
 # routing to a homepage
 # @app.route('/')
@@ -12,15 +14,17 @@ app = Flask(__name__, template_folder='../../frontend/templates')
 #     return render_template('index.html')
 
 # creates a new list for a user
-@app.route('/create-list', methods=['POST'])
 @app.route('/')
 def create():
     return render_template('create_list.html')
+
+@app.route('/create-list', methods=['POST'])
 def create_list():
     if request.method == "POST":
         data = request.get_json()
 
-        id = random.randint(100000, 999999)
+        # generates a unique id
+        id = str(uuid.uuid4())
         name = data.get('name')
         age = data.get('age')
         height = data.get('height')
@@ -40,7 +44,8 @@ def create_list():
             return response
         else:
             return "Invalid data. Please provide all the required data fields!"
+        
     return "This route only accepts POST requests"
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
