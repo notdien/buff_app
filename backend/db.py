@@ -1,27 +1,16 @@
-from pymongo import MongoClient
-from pymongo.errors import ConnectionFailure
+import asyncio
+from motor.motor_asyncio import AsyncIOMotorClient
+from pymongo.server_api import ServerApi
 
 uri = 'mongodb+srv://dienttran7:xFjosyGy8GYh3kBO@cluster0.7pzlqnf.mongodb.net/'
-client = MongoClient(uri)
+client = AsyncIOMotorClient(uri, server_api = ServerApi('1'))
 
 # attempting to establish a connection to mongodb
-def ping():
+async def ping():
     try:
-        client.admin.command('ismaster')
-        print("Connected to DB!")
-    except:
-        print("Server not available...")
+        client.admin.command('ping')
+        print("Pinged your deployment, You successfully connected to MongoDB!")
+    except Exception as e:
+        print(e)
 
-# ping()
-
-# DRY for connecting to mongoDB
-def getDB():
-    # creates a database called 'BuffDB'
-    return client['BuffDB']
-
-# Adding newly created list to MongoDB
-def write_list(obj):
-    dbname = getDB()
-    collection_name = dbname('PR Lists')
-
-    
+asyncio.run(ping())
