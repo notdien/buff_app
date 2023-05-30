@@ -52,14 +52,16 @@
                     
                     var name = $('#name').val();
                     var age = $("#age").val();
-                    var weight = $("#weight").val();
                     var height = $("#height").val();
+                    var weight = $("#weight").val();
+                    var lifts = [];
             
                     var data = {
                         'name' : name,
                         'age' : age,
+                        'height' : height,
                         'weight' : weight,
-                        'height' : height
+                        'lifts' : lifts
                     };
                     
                     $.ajax ({
@@ -69,7 +71,7 @@
                         data: JSON.stringify(data),
                         success: function(response) {
                             console.log(response);
-                            $("#mydiv").text(response.result);
+                            // $("#mydiv").text(response.result);
                         },
                         error: function(xhr, status, error) {
                             console.log(error);

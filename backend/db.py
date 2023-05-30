@@ -30,19 +30,21 @@ async def write_list(obj):
             "lifts": obj["lifts"]
         }
 
-        results = await myCollection.insert_one(user_info)
-        print('result %s' % repr(results.inserted_id))
+        # results = await myCollection.insert_one(user_info)
+        # print('result %s' % repr(results.inserted_id))
+        await myCollection.insert_one(user_info)
+        print("Successfully added to the database!")
         
     except Exception as e:
         print(e)
 
-asyncio.run(write_list(
-    {
-        "id": 123444,
-        "name": "Dien_Tran",
-        "age": 23,
-        "height": "5'5",
-        "weight": 150,
-        "lifts": []
-    }
-))
+# asyncio.run(write_list(
+#     {
+#         "id": 123444,
+#         "name": "Dien_Tran",
+#         "age": 23,
+#         "height": "5'5",
+#         "weight": 150,
+#         "lifts": []
+#     }
+# ))
