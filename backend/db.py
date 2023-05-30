@@ -13,3 +13,15 @@ def ping():
         print("Server not available...")
 
 # ping()
+
+# DRY for connecting to mongoDB
+def getDB():
+    # creates a database called 'BuffDB'
+    return client['BuffDB']
+
+# Adding newly created list to MongoDB
+def write_list(obj):
+    dbname = getDB()
+    collection_name = dbname('PR Lists')
+
+    
