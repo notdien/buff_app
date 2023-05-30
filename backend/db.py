@@ -13,4 +13,36 @@ async def ping():
     except Exception as e:
         print(e)
 
-asyncio.run(ping())
+# asyncio.run(ping())
+
+# writing a new list and adding it to mongoDB
+async def write_list(obj):
+    try:
+        myDB = client["BuffDB"]
+        myCollection = myDB["PR_Lists"]
+
+        user_info = {
+            "id": obj["id"],
+            "name": obj["name"],
+            "age": obj["age"],
+            "height": obj["height"],
+            "weight": obj["weight"],
+            "lifts": obj["lifts"]
+        }
+
+        results = await myCollection.insert_one(user_info)
+        print('result %s' % repr(results.inserted_id))
+        
+    except Exception as e:
+        print(e)
+
+asyncio.run(write_list(
+    {
+        "id": 123444,
+        "name": "Dien_Tran",
+        "age": 23,
+        "height": "5'5",
+        "weight": 150,
+        "lifts": []
+    }
+))
