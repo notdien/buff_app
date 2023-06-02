@@ -3,8 +3,9 @@ from flask import Flask, request
 from flask import render_template
 import json
 import uuid
+import asyncio
 
-from db import write_list
+from db import write_list, close_client
 
 
 app = Flask(__name__, template_folder='../frontend/templates')
@@ -16,8 +17,6 @@ app = Flask(__name__, template_folder='../frontend/templates')
 
 # creates a new list for a user
 @app.route('/')
-# def create():
-#     return render_template('create_list.html')
 @app.route('/create-list', methods=['POST'])
 async def create_list():
     if request.method == "POST":

@@ -15,6 +15,10 @@ async def ping():
 
 # asyncio.run(ping())
 
+# closes the client
+async def close_client():
+    client.close()
+
 # writing a new list and adding it to mongoDB
 async def write_list(obj):
     try:
@@ -30,8 +34,6 @@ async def write_list(obj):
             "lifts": obj["lifts"]
         }
 
-        # results = await myCollection.insert_one(user_info)
-        # print('result %s' % repr(results.inserted_id))
         await myCollection.insert_one(user_info)
         print("Successfully added to the database!")
         
