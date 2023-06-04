@@ -50,7 +50,24 @@ async def create_list():
     return render_template('create_list.html')
 
 @app.route('/add.html')
-def add():
+@app.route('/list/id', methods=['POST'])
+async def add(id):
+    if request.method == "POST":
+        data = request.get_json()
+
+        lifts = data.get('lifts')
+        pr = data.get('pr')
+        date = data.get('date')
+
+        if lifts and pr and date:
+            response_data = {
+                'lifts': lifts,
+                'pr': pr,
+                'date': date
+            }
+
+        
+
     return render_template('add.html')
 
 @app.route('/update.html')
