@@ -11,8 +11,12 @@ from db import write_list, close_client
 app = Flask(__name__, template_folder='../frontend/templates')
 
 # routing to a homepage
-@app.route('/index.html')
+@app.route('/')
 def home():
+    return render_template('index.html')
+
+@app.route('/index.html')
+def index():
     return render_template('index.html')
 
 # creates a new list for a user
@@ -39,10 +43,10 @@ async def create_list():
                 'height': height,
                 'lifts': lifts
             }
-            response = json.dumps(response_data)
+            # response = json.dumps(response_data)
+            response = "Successfully created that List!\nHere is your info: \n" + json.dumps(response_data)
             await write_list(response_data)
-            print("Successfully created that list!")
-            return response
+            return response, 200
         else:
             return "Invalid data. Please provide all the required data fields!"
         
@@ -50,7 +54,7 @@ async def create_list():
     return render_template('create_list.html')
 
 @app.route('/add.html')
-@app.route('/list/id', methods=['POST'])
+@app.route('/list/<string:id>', methods=['POST'])
 async def add(id):
     if request.method == "POST":
         data = request.get_json()
@@ -65,8 +69,10 @@ async def add(id):
                 'pr': pr,
                 'date': date
             }
-
-        
+            response = "Adding:\n" + json.dumps(response_data)
+            return response, 200
+        else:
+            return "Invalid data. Please provide all the required data fields!"
 
     return render_template('add.html')
 
