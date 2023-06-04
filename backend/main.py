@@ -11,12 +11,12 @@ from db import write_list, close_client
 app = Flask(__name__, template_folder='../frontend/templates')
 
 # routing to a homepage
-# @app.route('/')
-# def home():
-#     return render_template('index.html')
+@app.route('/index.html')
+def home():
+    return render_template('index.html')
 
 # creates a new list for a user
-@app.route('/')
+@app.route('/create_list.html')
 @app.route('/create-list', methods=['POST'])
 async def create_list():
     if request.method == "POST":
@@ -48,6 +48,22 @@ async def create_list():
         
     # return "This route only accepts POST requests"
     return render_template('create_list.html')
+
+@app.route('/add.html')
+def add():
+    return render_template('add.html')
+
+@app.route('/update.html')
+def update():
+    return render_template('update.html')
+
+@app.route('/delete.html')
+def delete():
+    return render_template('delete.html')
+
+@app.route('/view.html')
+def view():
+    return render_template('view.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
