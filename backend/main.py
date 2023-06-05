@@ -55,7 +55,7 @@ async def create_list():
 
 @app.route('/add.html')
 @app.route('/list/<string:id>', methods=['POST'])
-async def add(id):
+async def add():
     if request.method == "POST":
         data = request.get_json()
 
@@ -81,8 +81,11 @@ def update():
     return render_template('update.html')
 
 @app.route('/delete.html')
-def delete():
-    return render_template('delete.html')
+@app.route('/list/<string:id>', methods = ['DELETE'])
+# async def delete(id):
+#     if request.method == "DELETE":
+
+
 
 @app.route('/view.html')
 def view():

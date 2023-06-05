@@ -43,10 +43,37 @@ async def write_list(obj):
 # asyncio.run(write_list(
 #     {
 #         "id": 123444,
-#         "name": "Dien_Tran",
+#         "name": "MongoPING",
 #         "age": 23,
 #         "height": "5'5",
 #         "weight": 150,
 #         "lifts": []
 #     }
 # ))
+
+# method for adding to a list in the database
+# async def add(objID, obj):
+#     try:
+
+#     except:
+
+# method for deleting from the database
+async def delete_list(objID):
+    try:
+        myDB = client["BuffDB"]
+        mycollection = myDB["PR_Lists"]
+
+        deletion = {
+            "id": objID["id"]
+        }
+
+        await mycollection.delete_one(deletion)
+        print("Successfully deleted that List from the database!")
+    except Exception as e:
+        print(e)
+
+asyncio.run(delete_list(
+    {
+    "id": "65d80ef4-5baa-4777-b482-e805e0bb7bf9"
+    }
+))
