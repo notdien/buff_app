@@ -15,10 +15,6 @@ async def ping():
 
 # asyncio.run(ping())
 
-# closes the client
-async def close_client():
-    client.close()
-
 # writing a new list and adding it to mongoDB
 async def write_list(obj):
     try:
@@ -149,6 +145,18 @@ async def read_list(objID):
         list_id = {
             "id": objID["id"]
         }
+
+        cursor = myCollection.find(list_id)
+        documents = await cursor.to_list(length=None)
+
+        for document in documents:
+            print(document)
         
     except Exception as e:
         print(e)
+
+asyncio.run(read_list(
+    {
+        "id": "5acee403-a113-4802-9260-b74a142b8fd5"
+    }
+))
