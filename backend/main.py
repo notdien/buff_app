@@ -91,7 +91,6 @@ def update():
 #     if request.method == "DELETE":
 
 
-
 @app.route('/view.html')
 def view():
     return render_template('view.html')
