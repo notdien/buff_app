@@ -22,6 +22,7 @@ async def close_client():
 # writing a new list and adding it to mongoDB
 async def write_list(obj):
     try:
+
         myDB = client["BuffDB"]
         myCollection = myDB["PR_Lists"]
 
@@ -36,14 +37,13 @@ async def write_list(obj):
 
         await myCollection.insert_one(user_info)
         print("Successfully added to the database!")
-        
+
     except Exception as e:
         print(e)
-
 # asyncio.run(write_list(
 #     {
 #         "id": 123444,
-#         "name": "MongoPING",
+#         "name": "MongoPING2",
 #         "age": 23,
 #         "height": "5'5",
 #         "weight": 150,

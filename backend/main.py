@@ -1,6 +1,6 @@
 # main python app
-from flask import Flask, request
-from flask import render_template
+# from flask import Flask, request, render_template
+from quart import Quart, request, jsonify, render_template
 import json
 import uuid
 import asyncio
@@ -8,7 +8,8 @@ import asyncio
 from db import write_list, close_client
 
 
-app = Flask(__name__, template_folder='../frontend/templates')
+# app = Flask(__name__, template_folder='../frontend/templates')
+app = Quart(__name__, template_folder='../frontend/templates')
 
 # routing to a homepage
 @app.route('/')
@@ -24,7 +25,7 @@ def index():
 @app.route('/create-list', methods=['POST'])
 async def create_list():
     if request.method == "POST":
-        data = request.get_json()
+        data = await request.get_json()
 
         # generates a unique id
         id = str(uuid.uuid4())
@@ -44,9 +45,13 @@ async def create_list():
                 'lifts': lifts
             }
             # response = json.dumps(response_data)
-            response = "Successfully created that List!\nHere is your info: \n" + json.dumps(response_data)
+            # response = "Successfully created that List!\nHere is your info: \n" + json.dumps(response_data)
             await write_list(response_data)
-            return response, 200
+            # return response, 200
+            return jsonify({
+                'message': 'Successfully created that List!',
+                'data': response_data
+            }), 200
         else:
             return "Invalid data. Please provide all the required data fields!"
         
