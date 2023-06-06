@@ -40,6 +40,7 @@ async def write_list(obj):
 
     except Exception as e:
         print(e)
+
 # asyncio.run(write_list(
 #     {
 #         "id": 123444,
@@ -67,10 +68,27 @@ async def add(objID, obj):
             "date": obj["date"]
         }
 
-        # await myCollection.update_one(add_id, {$push: {lift: pr_list}})
+        update = {"$push": {"lifts" : pr_list}}
+
+        await myCollection.update_one(add_id, update)
+        print("Sucessfully added that to your list!")
 
     except Exception as e:
         print(e)
+
+
+# asyncio.run(add(
+#     {"id" : "5acee403-a113-4802-9260-b74a142b8fd5"},
+#     {
+#         "lift": "bench",
+#         "pr": "205",
+#         "date": "5/29/23"
+#     }
+# ))
+
+# method for updating user information if needed
+# async def update_list(objID, obj):
+
 
 # method for deleting from the database
 async def delete_list(objID):
