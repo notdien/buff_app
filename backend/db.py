@@ -1,6 +1,7 @@
 import asyncio
 from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo.server_api import ServerApi
+from pymongo.errors import PyMongoError
 
 uri = 'mongodb+srv://dienttran7:xFjosyGy8GYh3kBO@cluster0.7pzlqnf.mongodb.net/'
 client = AsyncIOMotorClient(uri, server_api = ServerApi('1'))
@@ -18,7 +19,6 @@ async def ping():
 # writing a new list and adding it to mongoDB
 async def write_list(obj):
     try:
-
         myDB = client["BuffDB"]
         myCollection = myDB["PR_Lists"]
 
@@ -31,15 +31,21 @@ async def write_list(obj):
             "lifts": obj["lifts"]
         }
 
-        await myCollection.insert_one(user_info)
-        print("Successfully added to the database!")
+        result = await myCollection.insert_one(user_info)
+        if result.acknowledged:
+            print("Successfully created new List!")
+            return True
+        else:
+            print("Error, not added to database!")
 
-    except Exception as e:
-        print(e)
+    except PyMongoError as error:
+        print(f"An error has occured: {error}")
+    # finally:
+    #     client.close()
 
 # asyncio.run(write_list(
 #     {
-#         "id": 123444,
+#         "id": 1245558,
 #         "name": "MongoPING2",
 #         "age": 23,
 #         "height": "5'5",
@@ -66,14 +72,17 @@ async def add(objID, obj):
 
         update = {"$push": {"lifts" : pr_list}}
 
-        await myCollection.update_one(list_id, update)
-        print("Sucessfully added that to your list!")
+        result = await myCollection.update_one(list_id, update)
+        if result.matched_count == 0:
+            print("No document with that ID exists!")
+        else:
+            print("Successfully added that to your list!")
 
-    except Exception as e:
-        print(e)
+    except PyMongoError as error:
+        print(f"An error has occured: {error}")
 
 # asyncio.run(add(
-#     {"id" : "5acee403-a113-4802-9260-b74a142b8fd5"},
+#     {"id" : "3329ba15-8a9f-42c3-857e-e4bfcee662b4"},
 #     {
 #         "lift": "bench",
 #         "pr": "205",
@@ -100,18 +109,24 @@ async def update_list(objID, obj):
 
         update = {"$set": updated_list}
 
-        await myCollection.update_one(list_id, update)
-        print("Successfully made changes to the list!")
+        # await myCollection.update_one(list_id, update)
+        # print("Successfully made changes to the list!")
 
-    except Exception as e:
-        print(e)
+        result = await myCollection.update_one(list_id, update)
+        if result.matched_count == 0:
+            print("No document with that ID exists!")
+        else:
+            print("Successfully made changes to that list!")
+
+    except PyMongoError as error:
+        print(f"An error has occured: {error}")
 
 # asyncio.run(update_list(
-#     {"id": "31f123f2-5906-4fa6-ad01-fc2c3aa1a846"},
+#     {"id": "3329ba15-8a9f-42c3-857e-e4bfcee662b4"},
 #     {
-#         "name": "MONGODB_testing",
-#         "age": "69",
-#         "height": "6'1",
+#         "name": "Debugg!",
+#         "age": "100",
+#         "height": "6'9",
 #         "weight": "210"
 #     }
 # ))
@@ -126,17 +141,25 @@ async def delete_list(objID):
             "id": objID["id"]
         }
 
-        await myCollection.delete_one(list_id)
-        print("Successfully deleted that List from the database!")
-    except Exception as e:
-        print(e)
+        # await myCollection.delete_one(list_id)
+        # print("Successfully deleted that List from the database!")
+
+        result = await myCollection.delete_one(list_id)
+        if result.deleted_count == 0:
+            print("Cannot delete - that ID does not exist!")
+        else:
+            print("Successfully delete that List!")
+
+    except PyMongoError as error:
+        print(f"An error has occured: {error}")
 
 # asyncio.run(delete_list(
 #     {
-#     "id": "65d80ef4-5baa-4777-b482-e805e0bb7bf9"
+#     "id": "c143af2e-e26c-4bb4-aeef-8d833ec962c8"
 #     }
 # ))
 
+# method for find a list
 async def read_list(objID):
     try:
         myDB = client["BuffDB"]
@@ -149,14 +172,17 @@ async def read_list(objID):
         cursor = myCollection.find(list_id)
         documents = await cursor.to_list(length=None)
 
-        for document in documents:
-            print(document)
+        if len(documents) == 0:
+            print("No List with that ID exists!")
+        else:
+            for document in documents:
+                print(f"Results:\n{document}")
         
-    except Exception as e:
-        print(e)
+    except PyMongoError as error:
+        print(f"An error has occured: {error}")
 
-asyncio.run(read_list(
-    {
-        "id": "5acee403-a113-4802-9260-b74a142b8fd5"
-    }
-))
+# asyncio.run(read_list(
+#     {
+#         "id": "5acee403-a113-4802-9260-b74a142b8fd5"
+#     }
+# ))

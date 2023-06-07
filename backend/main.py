@@ -12,16 +12,16 @@ from db import write_list, add, update_list, delete_list, read_list
 app = Quart(__name__, template_folder='../frontend/templates')
 
 # routing to a homepage
-@app.route('/')
-def home():
-    return render_template('index.html')
+# @app.route('/')
+# def home():
+#     return render_template('index.html')
 
-@app.route('/index.html')
-def index():
-    return render_template('index.html')
+# @app.route('/index.html')
+# def index():
+#     return render_template('index.html')
 
 # creates a new list for a user
-@app.route('/create_list.html')
+# @app.route('/create_list.html')
 @app.route('/create-list', methods=['POST'])
 async def create_list():
     if request.method == "POST":
@@ -55,10 +55,10 @@ async def create_list():
         else:
             return "Invalid data. Please provide all the required data fields!"
         
-    # return "This route only accepts POST requests"
-    return render_template('create_list.html')
+    return "This route only accepts POST requests"
+    # return render_template('create_list.html')
 
-@app.route('/add.html')
+# @app.route('/add.html')
 @app.route('/list/<string:id>', methods=['POST'])
 async def add():
     if request.method == "POST":
@@ -79,13 +79,14 @@ async def add():
         else:
             return "Invalid data. Please provide all the required data fields!"
 
-    return render_template('add.html')
+    return "This route only accepts POST requests"
+    # return render_template('add.html')
 
-@app.route('/update.html')
-def update():
-    return render_template('update.html')
+# @app.route('/update.html')
+# def update():
+#     return render_template('update.html')
 
-@app.route('/delete.html')
+# @app.route('/delete.html')
 @app.route('/list/<string:id>', methods = ['DELETE'])
 # async def delete(id):
 #     if request.method == "DELETE":
