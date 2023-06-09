@@ -11,17 +11,7 @@ from db import write_list, add, update_list, delete_list, read_list
 # app = Flask(__name__, template_folder='../frontend/templates')
 app = Quart(__name__, template_folder='../frontend/templates')
 
-# routing to a homepage
-# @app.route('/')
-# def home():
-#     return render_template('index.html')
 
-# @app.route('/index.html')
-# def index():
-#     return render_template('index.html')
-
-# creates a new list for a user
-# @app.route('/create_list.html')
 @app.route('/create-list', methods=['POST'])
 async def create_list():
     if request.method == "POST":
@@ -31,16 +21,18 @@ async def create_list():
         id = str(uuid.uuid4())
         name = data.get('name')
         age = data.get('age')
+        gender = data.get('gender')
         weight = data.get('weight')
         height = data.get('height')
         lifts = []
 
-        if name and age and height and weight:
+        if name and age and gender and height and weight:
             response_data = {
                 'id': id,
                 'name': name,
-                'age': age,
-                'weight': weight,
+                'age': int(age),
+                'gender': gender,
+                'weight': int(weight),
                 'height': height,
                 'lifts': lifts
             }
@@ -54,15 +46,17 @@ async def create_list():
             }), 200
         else:
             return "Invalid data. Please provide all the required data fields!"
-        
+
     return "This route only accepts POST requests"
     # return render_template('create_list.html')
 
 # @app.route('/add.html')
+
+
 @app.route('/list/<string:id>', methods=['POST'])
-async def add():
+async def add(id):
     if request.method == "POST":
-        data = request.get_json()
+        data = await request.get_json()
 
         lifts = data.get('lifts')
         pr = data.get('pr')
@@ -71,30 +65,34 @@ async def add():
         if lifts and pr and date:
             response_data = {
                 'lifts': lifts,
-                'pr': pr,
+                'pr': int(pr),
                 'date': date
             }
-            response = "Adding:\n" + json.dumps(response_data)
-            return response, 200
+            await add(id, response_data)
+            return jsonify({
+                'message': f'Successfully added to List: + {id}',
+                'data': response_data
+            }), 200
         else:
             return "Invalid data. Please provide all the required data fields!"
 
     return "This route only accepts POST requests"
     # return render_template('add.html')
 
-# @app.route('/update.html')
-# def update():
-#     return render_template('update.html')
 
-# @app.route('/delete.html')
-@app.route('/list/<string:id>', methods = ['DELETE'])
-# async def delete(id):
-#     if request.method == "DELETE":
+@app.route('/list/<string:id>', methods=['DELETE'])
+async def delete(id):
+    if request.method == "DELETE":
+        await delete_list(id)
+        return jsonify({
+            'message': f'Successfully deleted List id: {id}'
+        }), 200
+    else:
+        return "Unsuccessful in deleting that list :("
 
 
-@app.route('/view.html')
-def view():
-    return render_template('view.html')
+@app.route('/list/<string:id>', methods='[GET]')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
