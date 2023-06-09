@@ -92,6 +92,9 @@ async def delete(id):
 
 
 @app.route('/list/<string:id>', methods='[GET]')
+async def read(id):
+    if request.method == "GET":
+        await read_list(id)
 
 
 if __name__ == '__main__':

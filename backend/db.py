@@ -166,11 +166,7 @@ async def read_list(objID):
         myDB = client["BuffDB"]
         myCollection = myDB["PR_Lists"]
 
-        list_id = {
-            "id": objID["id"]
-        }
-
-        cursor = myCollection.find(list_id)
+        cursor = myCollection.find({"id": objID})
         documents = await cursor.to_list(length=None)
 
         if len(documents) == 0:
@@ -183,7 +179,5 @@ async def read_list(objID):
         print(f"An error has occured: {error}")
 
 # asyncio.run(read_list(
-#     {
-#         "id": "5acee403-a113-4802-9260-b74a142b8fd5"
-#     }
+#     "ccc340bb-ac7a-44ec-bcd3-c390b3bd53a7"
 # ))
