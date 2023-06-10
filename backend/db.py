@@ -8,8 +8,6 @@ uri = 'mongodb+srv://dienttran7:xFjosyGy8GYh3kBO@cluster0.7pzlqnf.mongodb.net/'
 client = AsyncIOMotorClient(uri, server_api=ServerApi('1'))
 
 # attempting to establish a connection to mongodb
-
-
 async def ping():
     try:
         client.admin.command('ping')
@@ -20,8 +18,6 @@ async def ping():
 # asyncio.run(ping())
 
 # writing a new list and adding it to mongoDB
-
-
 async def write_list(obj):
     try:
         myDB = client["BuffDB"]
@@ -64,8 +60,6 @@ async def write_list(obj):
 # ))
 
 # method for adding to a list in the database
-
-
 async def add_to_list(objID, obj):
     try:
         myDB = client["BuffDB"]
@@ -100,8 +94,6 @@ async def add_to_list(objID, obj):
 # ))
 
 # method for updating user information if needed
-
-
 async def update_list(objID, obj):
     try:
         myDB = client["BuffDB"]
@@ -110,6 +102,7 @@ async def update_list(objID, obj):
         updated_list = {
             "name": obj["name"],
             "age": obj["age"],
+            "gender": obj["gender"],
             "height": obj["height"],
             "weight": obj["weight"],
         }
@@ -131,18 +124,17 @@ async def update_list(objID, obj):
         print(f"An error has occured: {error}")
 
 # asyncio.run(update_list(
-#     {"id": "3329ba15-8a9f-42c3-857e-e4bfcee662b4"},
+#     "3329ba15-8a9f-42c3-857e-e4bfcee662b4",
 #     {
 #         "name": "Debugg!",
 #         "age": "100",
+#         "gender": "male",
 #         "height": "6'9",
 #         "weight": "210"
 #     }
 # ))
 
 # method for deleting from the database
-
-
 async def delete_list(objID):
     try:
         myDB = client["BuffDB"]
@@ -164,8 +156,6 @@ async def delete_list(objID):
 # ))
 
 # method for find a list
-
-
 async def read_list(objID):
     try:
         myDB = client["BuffDB"]
@@ -186,5 +176,57 @@ async def read_list(objID):
         print(f"An error has occured: {error}")
 
 # asyncio.run(read_list(
+#     "ccc340bb-ac7a-44ec-bcd3-c390b3bd53a7"
+# ))
+
+# method for finding a user list with just the name to retrieve ID
+async def get_ID(objName):
+    try:
+        myDB = client["BuffDB"]
+        myCollection = myDB["PR_Lists"]
+
+        cursor = myCollection.find({"name": objName})
+        documents = await cursor.to_list(length = None)
+
+        if len(documents) == 0:
+            return "No ID exists with that name :("
+        else:
+            results = []
+            for document in documents:
+                result = {"name": document["name"], "id": document["id"], "age": document["age"]}
+                results.append(result)
+
+        # print(results)
+        return results
+            
+    except PyMongoError as error:
+        print(f"An error has occured: {error}")
+
+# asyncio.run(get_ID(
+#     "User1"
+# ))
+
+# method for only getting PR's
+async def get_lifts(objID):
+    try:
+        myDB = client["BuffDB"]
+        myCollection = myDB["PR_Lists"]
+
+        cursor = myCollection.find({"id": objID})
+        documents = await cursor.to_list(length = None)
+
+        if len(documents) == 0:
+            return "No lists exist with that ID :("
+        else:
+            results = []
+            for document in documents:
+                result = {"name": document["name"], "id": document["id"], "lifts": document["lifts"]}
+                results.append(result)
+
+        print(results)
+    except PyMongoError as error:
+        print(f"An error has occured: {error}")
+
+# asyncio.run(get_lifts(
 #     "ccc340bb-ac7a-44ec-bcd3-c390b3bd53a7"
 # ))

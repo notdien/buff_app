@@ -77,6 +77,35 @@ async def add(id):
 
 
 @app.route('/list/<string:id>', methods=['PUT'])
+async def changes(id):
+    if request.method == "PUT":
+        data = await request.get_json()
+
+        name = data.get('name')
+        age = data.get('age')
+        gender = data.get('gender')
+        height = data.get('height')
+        weight = data.get('weight')
+
+        if name and age and gender and height and weight:
+            response_data = {
+                'name': name,
+                'age': int(age),
+                'gender': gender,
+                'height': height,
+                'weight': int(weight)
+            }
+            await update_list(id, response_data)
+            return jsonify({
+                'message': f"Made changes to: {id}",
+                'changes': response_data
+            }), 200
+        else:
+            return "Could not make new changes...", 400
+        
+    return "This route only accepts PUT requests"
+
+
 
 
 @app.route('/list/<string:id>', methods=['DELETE'])
