@@ -2,6 +2,7 @@ import asyncio
 from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo.server_api import ServerApi
 from pymongo.errors import PyMongoError
+import json
 
 uri = 'mongodb+srv://dienttran7:xFjosyGy8GYh3kBO@cluster0.7pzlqnf.mongodb.net/'
 client = AsyncIOMotorClient(uri, server_api=ServerApi('1'))
@@ -38,10 +39,12 @@ async def write_list(obj):
 
         result = await myCollection.insert_one(user_info)
         if result.acknowledged:
-            print("Successfully created new List!")
-            return True
+            # print("Successfully created new List!")
+            # return True
+            return "Successfully created new List!"
         else:
-            print("Error, not added to database!")
+            # print("Error, not added to database!")
+            return "Error, not added to database!"
 
     except PyMongoError as error:
         print(f"An error has occured: {error}")
@@ -63,7 +66,7 @@ async def write_list(obj):
 # method for adding to a list in the database
 
 
-async def add(objID, obj):
+async def add_to_list(objID, obj):
     try:
         myDB = client["BuffDB"]
         myCollection = myDB["PR_Lists"]
@@ -85,7 +88,7 @@ async def add(objID, obj):
     except PyMongoError as error:
         print(f"An error has occured: {error}")
 
-# asyncio.run(add(
+# asyncio.run(add_to_list(
 #     "ccc340bb-ac7a-44ec-bcd3-c390b3bd53a7",
 #     {
 #         "lift": "bench",
@@ -147,9 +150,11 @@ async def delete_list(objID):
 
         result = await myCollection.delete_one({"id": objID})
         if result.deleted_count == 0:
-            print("Cannot delete - that ID does not exist!")
+            # print("Cannot delete - that ID does not exist!")
+            return "Cannot delete - that ID does not exist!"
         else:
-            print("Successfully delete that List!")
+            # print("Successfully delete that List!")
+            return "Successfully deleted that list!"
 
     except PyMongoError as error:
         print(f"An error has occured: {error}")
@@ -170,10 +175,12 @@ async def read_list(objID):
         documents = await cursor.to_list(length=None)
 
         if len(documents) == 0:
-            print("No List with that ID exists!")
+            # print("No List with that ID exists!")
+            return "No list with that ID exists!"
         else:
             for document in documents:
-                print(f"Results:\n{document}")
+                result = (f"{document}")
+                return result
 
     except PyMongoError as error:
         print(f"An error has occured: {error}")

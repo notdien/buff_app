@@ -5,7 +5,7 @@ import json
 import uuid
 import asyncio
 
-from db import write_list, add, update_list, delete_list, read_list
+from db import write_list, add_to_list, update_list, delete_list, read_list
 
 
 # app = Flask(__name__, template_folder='../frontend/templates')
@@ -45,12 +45,10 @@ async def create_list():
                 'data': response_data
             }), 200
         else:
-            return "Invalid data. Please provide all the required data fields!"
+            return "Invalid data. Please provide all the required data fields!", 400
 
     return "This route only accepts POST requests"
-    # return render_template('create_list.html')
 
-# @app.route('/add.html')
 
 
 @app.route('/list/<string:id>', methods=['POST'])
@@ -68,7 +66,7 @@ async def add(id):
                 'pr': int(pr),
                 'date': date
             }
-            await add(id, response_data)
+            await add_to_list(id, response_data)
             return jsonify({
                 'message': f'Successfully added to List: + {id}',
                 'data': response_data
@@ -77,24 +75,27 @@ async def add(id):
             return "Invalid data. Please provide all the required data fields!"
 
     return "This route only accepts POST requests"
-    # return render_template('add.html')
 
 
 @app.route('/list/<string:id>', methods=['DELETE'])
 async def delete(id):
     if request.method == "DELETE":
-        await delete_list(id)
-        return jsonify({
-            'message': f'Successfully deleted List id: {id}'
-        }), 200
+        result = await delete_list(id)
+        return jsonify(result), 200
     else:
-        return "Unsuccessful in deleting that list :("
+        return "Unsuccessful in deleting that list :(", 400
 
 
-@app.route('/list/<string:id>', methods='[GET]')
+@app.route('/list/<string:id>', methods=['GET'])
 async def read(id):
     if request.method == "GET":
-        await read_list(id)
+        result = await read_list(id)
+        # return jsonify(result), 200
+        return result, 200
+    else:
+        return "Error reading list...", 400
+        
+    
 
 
 if __name__ == '__main__':
