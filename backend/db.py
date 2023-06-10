@@ -223,7 +223,8 @@ async def get_lifts(objID):
                 result = {"Name": document["Name"], "Id": document["Id"], "Lifts": document["Lifts"]}
                 results.append(result)
 
-        print(results)
+        # print(results)
+        return results
     except PyMongoError as error:
         print(f"An error has occured: {error}")
 

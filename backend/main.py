@@ -5,7 +5,7 @@ import json
 import uuid
 import asyncio
 
-from db import write_list, add_to_list, update_list, delete_list, read_list
+from db import write_list, add_to_list, update_list, delete_list, read_list, get_ID, get_lifts
 
 
 # app = Flask(__name__, template_folder='../frontend/templates')
@@ -106,8 +106,6 @@ async def changes(Id):
     return "This route only accepts PUT requests"
 
 
-
-
 @app.route('/list/<string:Id>', methods=['DELETE'])
 async def delete(Id):
     if request.method == "DELETE":
@@ -125,6 +123,24 @@ async def read(Id):
         return result, 200
     else:
         return "Error reading list...", 400
+    
+
+@app.route('/list/id/<string:Name>', methods=['GET'])
+async def find_ID(Name):
+    if request.method == "GET":
+        result = await get_ID(Name)
+        return result, 200
+    else:
+        return "Error, no ID exists with that name :(", 400
+    
+
+@app.route('/list/lifts/<string:Id>', methods=['GET'])
+async def lift_info(Id):
+    if request.method == "GET":
+        result = await get_lifts(Id)
+        return result, 200
+    else:
+        return "Could not get lifts...", 400
 
 
 if __name__ == '__main__':
