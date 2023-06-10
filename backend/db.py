@@ -81,9 +81,11 @@ async def add_to_list(objID, obj):
 
         result = await myCollection.update_one({"id": objID}, update)
         if result.matched_count == 0:
-            print("No document with that ID exists!")
+            # print("No document with that ID exists!")
+            return "No document with that ID exists!"
         else:
-            print("Successfully added that to your list!")
+            # print("Successfully added that to your list!")
+            return "Successfully added that to your list!"
 
     except PyMongoError as error:
         print(f"An error has occured: {error}")
@@ -105,10 +107,6 @@ async def update_list(objID, obj):
         myDB = client["BuffDB"]
         myCollection = myDB["PR_Lists"]
 
-        list_id = {
-            "id": objID["id"]
-        }
-
         updated_list = {
             "name": obj["name"],
             "age": obj["age"],
@@ -121,11 +119,13 @@ async def update_list(objID, obj):
         # await myCollection.update_one(list_id, update)
         # print("Successfully made changes to the list!")
 
-        result = await myCollection.update_one(list_id, update)
+        result = await myCollection.update_one({"id": objID}, update)
         if result.matched_count == 0:
-            print("No document with that ID exists!")
+            # print("No document with that ID exists!")
+            return "No document with that ID exists!"
         else:
-            print("Successfully made changes to that list!")
+            # print("Successfully made changes to that list!")
+            return "Successfully made changes to that list!"
 
     except PyMongoError as error:
         print(f"An error has occured: {error}")
