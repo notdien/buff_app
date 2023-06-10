@@ -24,13 +24,13 @@ async def write_list(obj):
         myCollection = myDB["PR_Lists"]
 
         user_info = {
-            "id": obj["id"],
-            "name": obj["name"],
-            "age": obj["age"],
-            "gender": obj["gender"],
-            "height": obj["height"],
-            "weight": obj["weight"],
-            "lifts": obj["lifts"]
+            "Id": obj["Id"],
+            "Name": obj["Name"],
+            "Age": obj["Age"],
+            "Gender": obj["Gender"],
+            "Height": obj["Height"],
+            "Weight": obj["Weight"],
+            "Lifts": obj["Lifts"]
         }
 
         result = await myCollection.insert_one(user_info)
@@ -49,13 +49,13 @@ async def write_list(obj):
 
 # asyncio.run(write_list(
 #     {
-#         "id": 1245558,
-#         "name": "MongoPING2",
-#         "age": 23,
-#         "gender": "male",
-#         "height": "5'5",
-#         "weight": 150,
-#         "lifts": []
+#         "Id": "1245558",
+#         "Name": "MongoPING2",
+#         "Age": 23,
+#         "Gender": "Male",
+#         "Height": "5'5",
+#         "Weight": 150,
+#         "Lifts": []
 #     }
 # ))
 
@@ -66,14 +66,14 @@ async def add_to_list(objID, obj):
         myCollection = myDB["PR_Lists"]
 
         pr_list = {
-            "lift": obj["lift"],
-            "pr": obj["pr"],
-            "date": obj["date"]
+            "Lift": obj["Lift"],
+            "Pr": obj["Pr"],
+            "Date": obj["Date"]
         }
 
-        update = {"$push": {"lifts": pr_list}}
+        update = {"$push": {"Lifts": pr_list}}
 
-        result = await myCollection.update_one({"id": objID}, update)
+        result = await myCollection.update_one({"Id": objID}, update)
         if result.matched_count == 0:
             # print("No document with that ID exists!")
             return "No document with that ID exists!"
@@ -85,11 +85,11 @@ async def add_to_list(objID, obj):
         print(f"An error has occured: {error}")
 
 # asyncio.run(add_to_list(
-#     "ccc340bb-ac7a-44ec-bcd3-c390b3bd53a7",
+#     "79445436-897f-43a3-9d47-d222de2f70d9",
 #     {
-#         "lift": "bench",
-#         "pr": 205,
-#         "date": "6/9/2023"
+#         "Lift": "bench",
+#         "Pr": 205,
+#         "Date": "6/9/2023"
 #     }
 # ))
 
@@ -100,11 +100,11 @@ async def update_list(objID, obj):
         myCollection = myDB["PR_Lists"]
 
         updated_list = {
-            "name": obj["name"],
-            "age": obj["age"],
-            "gender": obj["gender"],
-            "height": obj["height"],
-            "weight": obj["weight"],
+            "Name": obj["Name"],
+            "Age": obj["Age"],
+            "Gender": obj["Gender"],
+            "Height": obj["Height"],
+            "Weight": obj["Weight"],
         }
 
         update = {"$set": updated_list}
@@ -112,7 +112,7 @@ async def update_list(objID, obj):
         # await myCollection.update_one(list_id, update)
         # print("Successfully made changes to the list!")
 
-        result = await myCollection.update_one({"id": objID}, update)
+        result = await myCollection.update_one({"Id": objID}, update)
         if result.matched_count == 0:
             # print("No document with that ID exists!")
             return "No document with that ID exists!"
@@ -124,13 +124,13 @@ async def update_list(objID, obj):
         print(f"An error has occured: {error}")
 
 # asyncio.run(update_list(
-#     "3329ba15-8a9f-42c3-857e-e4bfcee662b4",
+#     "1245558",
 #     {
-#         "name": "Debugg!",
-#         "age": "100",
-#         "gender": "male",
-#         "height": "6'9",
-#         "weight": "210"
+#         "Name": "Debugg!",
+#         "Age": "100",
+#         "Gender": "male",
+#         "Height": "6'9",
+#         "Weight": "210"
 #     }
 # ))
 
@@ -140,7 +140,7 @@ async def delete_list(objID):
         myDB = client["BuffDB"]
         myCollection = myDB["PR_Lists"]
 
-        result = await myCollection.delete_one({"id": objID})
+        result = await myCollection.delete_one({"Id": objID})
         if result.deleted_count == 0:
             # print("Cannot delete - that ID does not exist!")
             return "Cannot delete - that ID does not exist!"
@@ -152,7 +152,7 @@ async def delete_list(objID):
         print(f"An error has occured: {error}")
 
 # asyncio.run(delete_list(
-#     "31f123f2-5906-4fa6-ad01-fc2c3aa1a846"
+#     "1245558"
 # ))
 
 # method for find a list
@@ -161,7 +161,7 @@ async def read_list(objID):
         myDB = client["BuffDB"]
         myCollection = myDB["PR_Lists"]
 
-        cursor = myCollection.find({"id": objID})
+        cursor = myCollection.find({"Id": objID})
         documents = await cursor.to_list(length=None)
 
         if len(documents) == 0:
@@ -185,7 +185,7 @@ async def get_ID(objName):
         myDB = client["BuffDB"]
         myCollection = myDB["PR_Lists"]
 
-        cursor = myCollection.find({"name": objName})
+        cursor = myCollection.find({"Name": objName})
         documents = await cursor.to_list(length = None)
 
         if len(documents) == 0:
@@ -193,7 +193,7 @@ async def get_ID(objName):
         else:
             results = []
             for document in documents:
-                result = {"name": document["name"], "id": document["id"], "age": document["age"]}
+                result = {"Name": document["Name"], "Id": document["Id"], "Age": document["Age"]}
                 results.append(result)
 
         # print(results)
@@ -212,7 +212,7 @@ async def get_lifts(objID):
         myDB = client["BuffDB"]
         myCollection = myDB["PR_Lists"]
 
-        cursor = myCollection.find({"id": objID})
+        cursor = myCollection.find({"Id": objID})
         documents = await cursor.to_list(length = None)
 
         if len(documents) == 0:
@@ -220,7 +220,7 @@ async def get_lifts(objID):
         else:
             results = []
             for document in documents:
-                result = {"name": document["name"], "id": document["id"], "lifts": document["lifts"]}
+                result = {"Name": document["Name"], "Id": document["Id"], "Lifts": document["Lifts"]}
                 results.append(result)
 
         print(results)

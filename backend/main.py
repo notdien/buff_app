@@ -18,23 +18,23 @@ async def create_list():
         data = await request.get_json()
 
         # generates a unique id
-        id = str(uuid.uuid4())
-        name = data.get('name')
-        age = data.get('age')
-        gender = data.get('gender')
-        weight = data.get('weight')
-        height = data.get('height')
-        lifts = []
+        Id = str(uuid.uuid4())
+        Name = data.get('Name')
+        Age = data.get('Age')
+        Gender = data.get('Gender')
+        Weight = data.get('Weight')
+        Height = data.get('Height')
+        Lifts = []
 
-        if name and age and gender and height and weight:
+        if Name and Age and Gender and Height and Weight:
             response_data = {
-                'id': id,
-                'name': name,
-                'age': int(age),
-                'gender': gender,
-                'weight': int(weight),
-                'height': height,
-                'lifts': lifts
+                'Id': Id,
+                'Name': Name,
+                'Age': int(Age),
+                'Gender': Gender,
+                'Weight': int(Weight),
+                'Height': Height,
+                'Lifts': Lifts
             }
             # response = json.dumps(response_data)
             # response = "Successfully created that List!\nHere is your info: \n" + json.dumps(response_data)
@@ -50,24 +50,24 @@ async def create_list():
     return "This route only accepts POST requests"
 
 
-@app.route('/list/<string:id>', methods=['POST'])
-async def add(id):
+@app.route('/list/<string:Id>', methods=['POST'])
+async def add(Id):
     if request.method == "POST":
         data = await request.get_json()
 
-        lift = data.get('lift')
-        pr = data.get('pr')
-        date = data.get('date')
+        Lift = data.get('Lift')
+        Pr = data.get('Pr')
+        Date = data.get('Date')
 
-        if lift and pr and date:
+        if Lift and Pr and Date:
             response_data = {
-                'lift': lift,
-                'pr': int(pr),
-                'date': date
+                'Lift': Lift,
+                'Pr': int(Pr),
+                'Date': Date
             }
-            await add_to_list(id, response_data)
+            await add_to_list(Id, response_data)
             return jsonify({
-                'message': f'Successfully added to list: {id}',
+                'message': f'Successfully added to list: {Id}',
                 'data': response_data
             }), 200
         else:
@@ -76,28 +76,28 @@ async def add(id):
     return "This route only accepts POST requests"
 
 
-@app.route('/list/<string:id>', methods=['PUT'])
-async def changes(id):
+@app.route('/list/<string:Id>', methods=['PUT'])
+async def changes(Id):
     if request.method == "PUT":
         data = await request.get_json()
 
-        name = data.get('name')
-        age = data.get('age')
-        gender = data.get('gender')
-        height = data.get('height')
-        weight = data.get('weight')
+        Name = data.get('Name')
+        Age = data.get('Age')
+        Gender = data.get('Gender')
+        Height = data.get('Height')
+        Weight = data.get('Weight')
 
-        if name and age and gender and height and weight:
+        if Name and Age and Gender and Height and Weight:
             response_data = {
-                'name': name,
-                'age': int(age),
-                'gender': gender,
-                'height': height,
-                'weight': int(weight)
+                'Name': Name,
+                'Age': int(Age),
+                'Gender': Gender,
+                'Height': Height,
+                'Weight': int(Weight)
             }
-            await update_list(id, response_data)
+            await update_list(Id, response_data)
             return jsonify({
-                'message': f"Made changes to: {id}",
+                'message': f"Made changes to: {Id}",
                 'changes': response_data
             }), 200
         else:
@@ -108,19 +108,19 @@ async def changes(id):
 
 
 
-@app.route('/list/<string:id>', methods=['DELETE'])
-async def delete(id):
+@app.route('/list/<string:Id>', methods=['DELETE'])
+async def delete(Id):
     if request.method == "DELETE":
-        result = await delete_list(id)
+        result = await delete_list(Id)
         return jsonify(result), 200
     else:
         return "Unsuccessful in deleting that list :(", 400
 
 
-@app.route('/list/<string:id>', methods=['GET'])
-async def read(id):
+@app.route('/list/<string:Id>', methods=['GET'])
+async def read(Id):
     if request.method == "GET":
-        result = await read_list(id)
+        result = await read_list(Id)
         # return jsonify(result), 200
         return result, 200
     else:
