@@ -6,13 +6,13 @@ import { Button, Container, Form, Nav, Navbar, NavDropdown } from 'react-bootstr
 import { Routes, Route, Link } from 'react-router-dom';
 
 // import home from './pages/home';
-import create_list from './pages/create';
+import create from './pages/create';
 import adding from './pages/adding';
-import updates from './pages/update';
-import deleting from './pages/delete';
-import viewing from './pages/listItems';
-import prs from './pages/viewPrs';
-import searching from './pages/searchID';
+import update from './pages/update';
+import deleteList from './pages/deleteList';
+import listItems from './pages/listItems';
+import viewPrs from './pages/viewPrs';
+import searchID from './pages/searchID';
 
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
         <Container>
           <Navbar.Brand href="#home">Buff!</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#create_list">Create A List</Nav.Link>
+            <Nav.Link as ={create} to='/create'>Create A List</Nav.Link>
             <Nav.Link href="#adding">Add To a List</Nav.Link>
             <Nav.Link href="#updates">Update a List</Nav.Link>
             <Nav.Link href="#deleting">Delete a List</Nav.Link>
