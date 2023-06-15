@@ -1,5 +1,4 @@
-// import logo from './logo.svg';
-// import './App.css';
+import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Button, Container, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
@@ -20,7 +19,7 @@ function App() {
   <React.Fragment>
     <BrowserRouter>
 
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar id ="navbar-whole" collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         {/* <Navbar.Brand>
             <img
@@ -74,27 +73,6 @@ function App() {
     </Routes>
 
     </BrowserRouter>
-
-
-    {/* <BrowserRouter>
-      <Navbar bg="dark" variant="dark">
-      <Container>
-        <Navbar.Brand>Student Server</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav>
-            <Nav.Link as ={Link} to='/'>Home</Nav.Link>
-            <Nav.Link as ={Link} to='/create'>Create</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-      </Navbar>
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/create" element={<Create />} />
-      </Routes>
-    </BrowserRouter> */}
   </React.Fragment>
   );
 }
