@@ -11,7 +11,7 @@ import Update from './pages/update';
 import DeleteList from './pages/deleteList';
 import ListItems from './pages/listItems';
 import ViewPrs from './pages/viewPrs';
-import SearchID from './pages/searchID';
+// import SearchID from './pages/searchID';
 
 
 function App() {
@@ -21,15 +21,7 @@ function App() {
 
     <Navbar id ="navbar-whole" collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        {/* <Navbar.Brand>
-            <img
-              src=""
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-              // alt="React Bootstrap logo"
-            />
-          </Navbar.Brand> */}
+        <img id="image" src={require('./img/logo.png')} alt="BUFF! logo"/>
         <Navbar.Brand>BUFF!</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

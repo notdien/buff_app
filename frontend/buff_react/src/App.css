@@ -7,5 +7,9 @@ body {
 }
 
 #navbar-whole {
-  height: 90px;
+  padding: 20px;
+}
+
+#image {
+  height: 60px;
 }

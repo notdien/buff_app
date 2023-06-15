@@ -5,3 +5,12 @@
     align-items: center;
     height: 100vh;
 }
+
+#image {
+    height: 150px;
+    margin: auto;
+}
+
+#example-collapse-text {
+    padding: 30px;
+}
