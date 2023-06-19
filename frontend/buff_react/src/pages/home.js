@@ -1,12 +1,12 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/home.css';
-import { useState } from "react";
+// import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { Button, Nav } from "react-bootstrap";
 
 export default function Home() {
-    const [open, setOpen] = useState(false);
+    // const [open, setOpen] = useState(false);
     return (
         <React.Fragment>
             <section id="container">
