@@ -22,7 +22,7 @@ function App() {
     <Navbar id ="navbar-whole" collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <img id="image" src={require('./img/logo.png')} alt="BUFF! logo"/>
-        <Navbar.Brand>BUFF!</Navbar.Brand>
+        {/* <Navbar.Brand>BUFF!</Navbar.Brand> */}
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">

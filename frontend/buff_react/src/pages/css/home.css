@@ -6,6 +6,17 @@
     height: 100vh;
 }
 
+#innerBox {
+    background-color: rgb(82, 91, 67);
+    height: auto;
+    width: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
+
 #image {
     height: 150px;
     margin: auto;
@@ -13,4 +24,17 @@
 
 #example-collapse-text {
     padding: 30px;
+}
+
+#create-link {
+    margin: 30px;
+}
+
+#buffTitle {
+    margin: 30px;
+}
+
+#description {
+    margin: 10px;
+    font-size: auto;
 }
