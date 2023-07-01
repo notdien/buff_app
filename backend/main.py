@@ -1,19 +1,19 @@
 # main python app
 # from flask import Flask, request, render_template
-from quart import Quart, request, jsonify, render_template
+from quart import Quart, request, jsonify
 import uuid
 
 from quart_cors import cors
 
 from db import write_list, add_to_list, update_list, delete_list, read_list, get_ID, get_lifts
 
-
 # app = Flask(__name__, template_folder='../frontend/templates')
-app = Quart(__name__, template_folder='../frontend/templates')
+# app = Quart(__name__, template_folder='../frontend/templates')
+app = Quart(__name__)
 app = cors(app)
 
 
-@app.route('/create-list', methods=['POST'])
+@app.route('/create-list', methods=['POST', 'GET'])
 async def create_list():
     if request.method == "POST":
         data = await request.get_json()
