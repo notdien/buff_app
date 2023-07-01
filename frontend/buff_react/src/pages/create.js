@@ -17,21 +17,22 @@ export default function Create() {
     const [loading, setLoading] = useState("")
 
     function clear() {
-        document.getElementById("name").value = "";
-        document.getElementById("age").value = "";
-        document.getElementById("gender").value = "";
-        document.getElementById("weight").value = "";
-        document.getElementById("height").value = "";
+        document.getElementById("Name").value = "";
+        document.getElementById("Age").value = "";
+        document.getElementById("Gender").value = "";
+        document.getElementById("Weight").value = "";
+        document.getElementById("Height").value = "";
     }
 
     let createList = (e) => {
+        console.log("Pinged createList")
         e.preventDefault();
         console.log(Name, Age, Gender, Weight, Height);
 
         setError(null);
         setLoading(Name, Age, Gender, Weight, Height);
 
-        axios.post('http://127.0.0.1:5000/create-list', {
+        axios.post('/create-list', {
             Name: Name,
             Age: Age,
             Gender: Gender,
@@ -67,60 +68,57 @@ export default function Create() {
         <h1>
             Let's create a new list!
         </h1>
-
         <div>
-            <form>
+            <form onSubmit={createList}>
                 
-            <FloatingLabel
-                controlId="floatingInput"
-                label="Name"
-                className="mb-3"
-                id="name"
-            >
-                <Form.Control type="name" placeholder="John Doe" />
-            </FloatingLabel>
+            <label htmlFor="Name">Name: </label>
+            <input type="text" id="Name" name="Name"
+                value={Name}
+                onChange={(e) => {setName(e.target.value)}}
+            ></input>
 
-            <FloatingLabel
-                controlId="floatingInput"
-                label="Age"
-                className="mb-3"
-                id="age"
-            >
-                <Form.Control type="age" placeholder="Age" />
-            </FloatingLabel>
+            <br />
 
-            <FloatingLabel
-                controlId="floatingInput"
-                label="Gender"
-                className="mb-3"
-                id="gender"
-            >
-                <Form.Control type="gender" placeholder="Gender" />
-            </FloatingLabel>
+            <label htmlFor="Age">Age: </label>
+            <input type="number" id="Age" name="Age"
+                value={Age}
+                onChange={(e) => {setAge(e.target.value)}}
+            ></input>
+            
+            <br />
 
-            <FloatingLabel
-                controlId="floatingInput"
-                label="Weight"
-                className="mb-3"
-                id="weight"
-            >
-                <Form.Control type="weight" placeholder="Weight" />
-            </FloatingLabel>
+            <label htmlFor="Gender">Gender: </label>
+            <input type="text" id="Gender" name="Gender"
+                value={Gender}
+                onChange={(e) => {setGender(e.target.value)}}
+            ></input>
 
-            <FloatingLabel
-                controlId="floatingInput"
-                label="Height"
-                className="mb-3"
-                id="height"
-            >
-                <Form.Control type="height" placeholder="Height" />
-            </FloatingLabel>
+            <br />
 
-            <Button variant="success">Submit</Button>{' '}
+            <label htmlFor="Weight">Weight: </label>
+            <input type="number" id="Weight" name="Weight"
+                value={Weight}
+                onChange={(e) => {setWeight(e.target.value)}}
+            ></input>
+
+            <br />
+
+            <label htmlFor="Height">Height: </label>
+            <input type="text" id="Height" name="Height"
+                value={Height}
+                onChange={(e) => {setHeight(e.target.value)}}
+            ></input>
+
+            <br />
+            
+            <Button type="submit" variant ="success">{loading ? "submitting" : "Submit"}</Button>
+            {/* <button type="submit">{loading ? "submitting" : "Submit"}</button> */}
+            {loading && <p>Loading...</p>}
+            {error && <p style={{color: 'red', 'fontWeight': 'bold' }}>{response.message}</p>}
+            <div><p style={{color: 'green', 'fontWeight': 'bold' }}>{response.data}</p></div>
 
             </form>
         </div>
-
         </React.Fragment>
     );
 }
