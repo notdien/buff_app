@@ -12,8 +12,11 @@ from db import write_list, add_to_list, update_list, delete_list, read_list, get
 app = Quart(__name__)
 app = cors(app)
 
+@app.route('/', methods=['GET'])
+async def home():
+    return "Welcome to the Backend Home Page"
 
-@app.route('/create-list', methods=['POST', 'GET'])
+@app.route('/create-list', methods=['POST'])
 async def create_list():
     if request.method == "POST":
         data = await request.get_json()

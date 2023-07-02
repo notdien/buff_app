@@ -112,7 +112,6 @@ export default function Create() {
             <br />
             
             <Button type="submit" variant ="success">{loading ? "submitting" : "Submit"}</Button>
-            {/* <button type="submit">{loading ? "submitting" : "Submit"}</button> */}
             {loading && <p>Loading...</p>}
             {error && <p style={{color: 'red', 'fontWeight': 'bold' }}>{response.message}</p>}
             <div><p style={{color: 'green', 'fontWeight': 'bold' }}>{response.data}</p></div>
