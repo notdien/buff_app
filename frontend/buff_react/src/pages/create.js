@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios"
 import { Form, FloatingLabel, Button } from 'react-bootstrap';
+import './css/create.css';
 
 
 export default function Create() {
@@ -67,48 +68,59 @@ export default function Create() {
 
     return (
         <React.Fragment>
-        <h1>
-            Let's create a new list!
-        </h1>
-        <div>
-            <form onSubmit={createList}>
+        <div id="container">
+            <form id="user-form" onSubmit={createList}>
+
+                <h1>
+                    Let's create a new list!
+                </h1>
                 
             <label htmlFor="Name">Name: </label>
             <input type="text" id="Name" name="Name"
+                placeholder="Name"
                 value={Name}
                 onChange={(e) => {setName(e.target.value)}}
+                required
             ></input>
 
             <br />
 
             <label htmlFor="Age">Age: </label>
             <input type="number" id="Age" name="Age"
+                placeholder="Age"
                 value={Age}
                 onChange={(e) => {setAge(e.target.value)}}
+                required
             ></input>
             
             <br />
 
             <label htmlFor="Gender">Gender: </label>
             <input type="text" id="Gender" name="Gender"
+                placeholder="Gender"
                 value={Gender}
                 onChange={(e) => {setGender(e.target.value)}}
+                required
             ></input>
 
             <br />
 
             <label htmlFor="Weight">Weight: </label>
             <input type="number" id="Weight" name="Weight"
+                placeholder="Weight"
                 value={Weight}
                 onChange={(e) => {setWeight(e.target.value)}}
+                required
             ></input>
 
             <br />
 
             <label htmlFor="Height">Height: </label>
             <input type="text" id="Height" name="Height"
+                placeholder="Height"
                 value={Height}
                 onChange={(e) => {setHeight(e.target.value)}}
+                required
             ></input>
 
             <br />

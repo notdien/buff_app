@@ -15,7 +15,7 @@ async def ping():
     except Exception as e:
         print(e)
 
-# asyncio.run(ping())
+asyncio.run(ping())
 
 # writing a new list and adding it to mongoDB
 async def write_list(obj):
