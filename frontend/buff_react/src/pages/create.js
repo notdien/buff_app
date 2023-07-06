@@ -16,6 +16,8 @@ export default function Create() {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState("")
 
+    const responseObject = {data: response.data, message: response.message}
+
     function clear() {
         document.getElementById("Name").value = "";
         document.getElementById("Age").value = "";
@@ -113,8 +115,8 @@ export default function Create() {
             
             <Button type="submit" variant ="success">{loading ? "submitting" : "Submit"}</Button>
             {loading && <p>Loading...</p>}
-            {error && <p style={{color: 'red', 'fontWeight': 'bold' }}>{response.message}</p>}
-            <div><p style={{color: 'green', 'fontWeight': 'bold' }}>{response.data}</p></div>
+            {/* {error && <p style={{color: 'red', 'fontWeight': 'bold' }}>{response.message}</p>}
+            <div><p style={{color: 'green', 'fontWeight': 'bold' }}>{response.data}</p></div> */}
 
             </form>
         </div>
