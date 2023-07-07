@@ -5,9 +5,15 @@ export default function Prs() {
 
     return (
         <React.Fragment>
-        <h1>
-            viewPrs!
-        </h1>
+            <div id="container">
+                <form id="default-form">
+                    <h1>
+                        View your PRs
+                    </h1>
+                    <label htmlFor="ID">Enter ID:</label>
+                    <input type="text" placeholder="Enter ID"></input>
+                </form>
+            </div>
         </React.Fragment>
     );
 }

@@ -5,9 +5,15 @@ export default function List() {
 
     return (
         <React.Fragment>
-        <h1>
-            listItems
-        </h1>
+        <div id="container">
+            <form id="default-form">
+                <h1>
+                    View your information
+                </h1>
+                <label htmlFor="ID">Enter ID:</label>
+                <input type="text" placeholder="Enter ID"></input>
+            </form>
+        </div>
         </React.Fragment>
     );
 }
