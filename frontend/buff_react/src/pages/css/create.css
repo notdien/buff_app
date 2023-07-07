@@ -7,13 +7,14 @@
 
 #user-form h1 {
     border-bottom: 2px solid black;
-    padding: 25px;
     text-align: center;
+    margin: 20px
 }
 
 #user-form label, input {
     display: block;
-    margin: 5px;
+    margin-bottom: 3px;
+    margin-left: 5px;
 }
 
 #user-form label {
@@ -22,14 +23,10 @@
 
 #user-form input {
     height: 2.5em;
-    width: 95%;
+    width: 99%;
     border-radius: 10px;
 }
 
 #user-form button {
-    margin: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-bottom: 20px;
 }
-

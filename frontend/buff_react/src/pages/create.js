@@ -72,7 +72,7 @@ export default function Create() {
             <form id="user-form" onSubmit={createList}>
 
                 <h1>
-                    Let's create a new list!
+                    Get Started
                 </h1>
                 
             <label htmlFor="Name">Name: </label>
@@ -125,7 +125,9 @@ export default function Create() {
 
             <br />
             
-            <Button type="submit" variant ="success">{loading ? "submitting" : "Submit"}</Button>
+            <div class="text-center">
+             <Button type="submit" variant ="success">{loading ? "submitting" : "Submit"}</Button>
+            </div>
             {loading && <p>Loading...</p>}
             {/* {error && <p style={{color: 'red', 'fontWeight': 'bold' }}>{response.message}</p>}
             <div><p style={{color: 'green', 'fontWeight': 'bold' }}>{response.data}</p></div> */}
