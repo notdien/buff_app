@@ -75,6 +75,7 @@ export default function Create() {
                     Get Started
                 </h1>
                 
+            <div class ="middle-con">
             <label htmlFor="Name">Name: </label>
             <input type="text" id="Name" name="Name"
                 placeholder="Name"
@@ -123,12 +124,12 @@ export default function Create() {
                 required
             ></input>
 
-            <br />
             
             <div class="text-center">
              <Button type="submit" variant ="success">{loading ? "submitting" : "Submit"}</Button>
             </div>
             {loading && <p>Loading...</p>}
+            </div>
             {/* {error && <p style={{color: 'red', 'fontWeight': 'bold' }}>{response.message}</p>}
             <div><p style={{color: 'green', 'fontWeight': 'bold' }}>{response.data}</p></div> */}
 

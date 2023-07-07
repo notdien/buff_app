@@ -1,32 +1,43 @@
 #user-form {
     background-color: rgb(82, 91, 67);
     height: auto;
-    width: 50%;
+    width: auto;
     border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.middle-con {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #user-form h1 {
-    border-bottom: 2px solid black;
+    border-bottom: 3px solid black;
     text-align: center;
-    margin: 20px
+    margin: 20px;
 }
 
 #user-form label, input {
-    display: block;
     margin-bottom: 3px;
     margin-left: 5px;
+    margin-right: 20px;
 }
 
 #user-form label {
     font-size: 1em;
+    margin-top: 8px;
 }
 
 #user-form input {
     height: 2.5em;
-    width: 99%;
     border-radius: 10px;
 }
 
 #user-form button {
+    margin-top: 20px;
     margin-bottom: 20px;
 }
