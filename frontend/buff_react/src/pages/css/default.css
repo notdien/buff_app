@@ -1,7 +1,7 @@
 #default-form {
     background-color: rgb(82, 91, 67);
     width: 50%;
-    height: 25%;
+    height: auto;
     display: flex;
     align-items: center;
     align-content: center;
@@ -15,4 +15,5 @@
 
 #default-form input {
     border-radius: 10px;
+    margin-bottom: 20px;
 }

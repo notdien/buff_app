@@ -5,9 +5,24 @@ export default function Add() {
 
     return (
         <React.Fragment>
-        <h1>
-            Adding
-        </h1>
+            <div id="container">
+                <form id="default-form">
+                    <h1>
+                        Add a new PR
+                    </h1>
+
+                    <label>Enter your ID:</label>
+                    <input></input>
+
+                    <label>Enter PR name:</label>
+                    <input></input>
+
+                    <label>Enter PR:</label>
+                    <input></input>
+
+                    <Button type="submit" variant ="success">{loading ? "submitting" : "Submit"}</Button>
+                </form>
+            </div>
         </React.Fragment>
     );
 }
