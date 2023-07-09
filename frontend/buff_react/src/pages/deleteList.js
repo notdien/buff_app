@@ -1,5 +1,6 @@
 import React from "react"
 import './css/default.css';
+import { Button } from 'react-bootstrap';
 
 export default function Delete () {
     console.log("Delete page has been called!")
@@ -13,6 +14,9 @@ export default function Delete () {
                     </h1>
                     <label htmlFor="ID">Delete it:</label>
                     <input type="text" placeholder="Enter ID"></input>
+
+                    {/* <Button type="submit" variant ="success">{loading ? "submitting" : "Submit"}</Button> */}
+                    <Button type="submit">Submit</Button>
                 </form>
             </div>
         </React.Fragment>

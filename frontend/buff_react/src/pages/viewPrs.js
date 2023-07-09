@@ -1,4 +1,5 @@
 import React from "react"
+import { Button } from 'react-bootstrap';
 
 export default function Prs() {
     console.log("PRs page has been called!")
@@ -12,6 +13,9 @@ export default function Prs() {
                     </h1>
                     <label htmlFor="ID">Enter ID:</label>
                     <input type="text" placeholder="Enter ID"></input>
+
+                    {/* <Button type="submit" variant ="success">{loading ? "submitting" : "Submit"}</Button> */}
+                    <Button type="submit">Submit</Button>
                 </form>
             </div>
         </React.Fragment>

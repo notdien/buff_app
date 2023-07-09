@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios"
-import { Form, FloatingLabel, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import './css/create.css';
 
 
@@ -126,7 +126,7 @@ export default function Create() {
 
             
             <div class="text-center">
-             <Button type="submit" variant ="success">{loading ? "submitting" : "Submit"}</Button>
+             <Button type="submit">{loading ? "submitting" : "Submit"}</Button>
             </div>
             {loading && <p>Loading...</p>}
             </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from 'react-bootstrap';
 
 export default function Add() {
     console.log("Adding page has been called!")
@@ -20,7 +21,8 @@ export default function Add() {
                     <label>Enter PR:</label>
                     <input></input>
 
-                    <Button type="submit" variant ="success">{loading ? "submitting" : "Submit"}</Button>
+                    {/* <Button type="submit" variant ="success">{loading ? "submitting" : "Submit"}</Button> */}
+                    <Button type="submit">Submit</Button>
                 </form>
             </div>
         </React.Fragment>
