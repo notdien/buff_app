@@ -1,0 +1,12 @@
+.table tr:nth-child(2n) {
+    background-color: white;
+}
+
+.table {
+    margin: 20px;
+}
+
+.table, .table tr, .table td, .table th {
+    padding: 5px 15px;
+    border-spacing: 0;
+}
