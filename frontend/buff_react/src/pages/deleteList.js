@@ -34,15 +34,20 @@ export default function Delete () {
     return (
         <React.Fragment>
             <div id="container">
-                <form id="default-form">
+                <form id="default-form" onSubmit={deleteStudent}>
                     <h1>
                         No longer want your list?
                     </h1>
                     <label htmlFor="id">Delete it:</label>
-                    <input type="text" placeholder="Enter ID"></input>
+                    <input required type="text" placeholder="Enter ID"
+                    id = "id" name="id" value={id}
+                    onChange={(e) => {setid(e.target.value)}}
+                    ></input>
 
-                    {/* <Button type="submit" variant ="success">{loading ? "submitting" : "Submit"}</Button> */}
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit">{loading ? "submitting" : "Submit"}</Button>
+                    {loading && <p>Loading...</p>}
+                    {/* {error && <p style={{color: 'red', 'fontWeight': 'bold' }}>{response.message}</p>}
+                    <div><p style={{color: 'green', 'fontWeight': 'bold' }}>{response.data}</p></div> */}
                 </form>
             </div>
         </React.Fragment>
