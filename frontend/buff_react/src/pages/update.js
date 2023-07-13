@@ -5,11 +5,11 @@ import axios from "axios"
 export default function Update() {
     
     let [id, setid] = useState('');
-    let [name, setName] = useState('');
-    let [age, setAge] = useState('');
-    let [gender, setGender] = useState('');
-    let [height, setHeight] = useState('');
-    let [weight, setWeight] = useState('');
+    let [Name, setName] = useState('');
+    let [Age, setAge] = useState('');
+    let [Gender, setGender] = useState('');
+    let [Height, setHeight] = useState('');
+    let [Weight, setWeight] = useState('');
 
     let [response, setResponse] = useState('');
     const [error, setError] = useState('');
@@ -18,14 +18,14 @@ export default function Update() {
     let updateStudent = (e) => {
         e.preventDefault();
         setError(null)
-        setLoading(name, age, gender, height, weight);
+        setLoading(Name, Age, Gender, Height, Weight);
 
         axios.put('http://127.0.0.1:5000/list/' + id, {
-            name: name,
-            age: age,
-            gender: gender,
-            height: height,
-            weight: weight
+            Name: Name,
+            Age: Age,
+            Gender: Gender,
+            Height: Height,
+            Weight: Weight
         })
         .then(function(response) {
             setError(false);
@@ -59,29 +59,29 @@ export default function Update() {
                     Input changes - 
                 </h2>
 
-                <label htmlFor="name">Name:</label>
-                <input required id='name' name='name' value = {name}
+                <label htmlFor="Name">Name:</label>
+                <input required id='Name' name='Name' value = {Name}
                 onChange={(e) => {setName(e.target.value)}}
                 ></input>
 
-                <label htmlFor="age">Age:</label>
-                <input required id='age' name='age' value = {age}
-                onChange={(e) => {setAge(e.target.value)}}
+                <label htmlFor="Age">Age:</label>
+                <input required id='Age' name='Age' value = {Age}
+                onChange={(e) => {setAge(e.target.value)}} type="number"
                 ></input>
 
-                <label htmlFor="gender">Gender:</label>
-                <input required id='gender' name='gender' value = {gender}
+                <label htmlFor="Gender">Gender:</label>
+                <input required id='Gender' name='Gender' value = {Gender}
                 onChange={(e) => {setGender(e.target.value)}}
                 ></input>
 
-                <label htmlFor="height">Height:</label>
-                <input required id='height' name='height' value = {height}
+                <label htmlFor="Height">Height:</label>
+                <input required id='Height' name='Height' value = {Height}
                 onChange={(e) => {setHeight(e.target.value)}}
                 ></input>
 
-                <label htmlFor="weight">Weight:</label>
-                <input required id='weight' name='weight' value = {weight}
-                onChange={(e) => {setWeight(e.target.value)}}
+                <label htmlFor="Weight">Weight:</label>
+                <input required id='Weight' name='Weight' value = {Weight}
+                onChange={(e) => {setWeight(e.target.value)}} type="number"
                 ></input>
 
                 <Button type="submit" variant ="success">{loading ? "submitting" : "Submit"}</Button>
