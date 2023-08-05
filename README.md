@@ -19,4 +19,5 @@ A program for users to track their PRs in the gym!
 
 # This is Version 1, I plan to redo the project, specifically the frontend in the future.
 
-
+# Current Version of the Buff APP
+![Buff front page](https://github.com/notdien/buff_app/blob/main/images/buff.png)
