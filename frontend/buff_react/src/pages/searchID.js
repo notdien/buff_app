@@ -6,7 +6,7 @@ export default function Search() {
     return (
         <React.Fragment>
         <h1>
-            searchIDs
+            Work in progress...
         </h1>
         </React.Fragment>
     );

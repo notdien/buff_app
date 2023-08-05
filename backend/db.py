@@ -8,8 +8,6 @@ uri = 'mongodb+srv://dienttran7:xFjosyGy8GYh3kBO@cluster0.7pzlqnf.mongodb.net/'
 client = AsyncIOMotorClient(uri, server_api=ServerApi('1'))
 
 # attempting to establish a connection to mongodb
-
-
 async def ping():
     try:
         client.admin.command('ping')
@@ -20,8 +18,6 @@ async def ping():
 # asyncio.run(ping())
 
 # writing a new list and adding it to mongoDB
-
-
 async def write_list(obj):
     try:
         myDB = client["BuffDB"]
@@ -64,8 +60,6 @@ async def write_list(obj):
 # ))
 
 # method for adding to a list in the database
-
-
 async def add_to_list(objID, obj):
     try:
         myDB = client["BuffDB"]
@@ -100,8 +94,6 @@ async def add_to_list(objID, obj):
 # ))
 
 # method for updating user information if needed
-
-
 async def update_list(objID, obj):
     try:
         myDB = client["BuffDB"]
@@ -143,8 +135,6 @@ async def update_list(objID, obj):
 # ))
 
 # method for deleting from the database
-
-
 async def delete_list(objID):
     try:
         myDB = client["BuffDB"]
@@ -166,8 +156,6 @@ async def delete_list(objID):
 # ))
 
 # method for find a list
-
-
 async def read_list(objID):
     try:
         myDB = client["BuffDB"]
@@ -192,8 +180,6 @@ async def read_list(objID):
 # ))
 
 # method for finding a user list with just the name to retrieve ID
-
-
 async def get_ID(objName):
     try:
         myDB = client["BuffDB"]
@@ -222,8 +208,6 @@ async def get_ID(objName):
 # ))
 
 # method for only getting PR's
-
-
 async def get_lifts(objID):
     try:
         myDB = client["BuffDB"]

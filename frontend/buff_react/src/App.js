@@ -9,7 +9,7 @@ import Create from './pages/create';
 import Adding from './pages/adding';
 import Update from './pages/update';
 import DeleteList from './pages/deleteList';
-import ListItems from './pages/listItems';
+// import ListItems from './pages/listItems';
 import ViewPrs from './pages/viewPrs';
 // import SearchID from './pages/searchID';
 
@@ -32,15 +32,15 @@ function App() {
             <Nav.Link as ={Link} to='/update'>Update a List</Nav.Link>
             <Nav.Link as ={Link} to='/deleteList'>Delete a List</Nav.Link>
             <NavDropdown title="View" id="collasible-nav-dropdown">
-              <NavDropdown.Item as ={Link} to='/listItems'>
-                View An Entire List</NavDropdown.Item>
+              {/* <NavDropdown.Item as ={Link} to='/listItems'>
+                View An Entire List</NavDropdown.Item> */}
               <NavDropdown.Item as ={Link} to='/viewPrs'>
                 View PRs
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Nav>
-          <Form className="d-flex">
+          {/* <Form className="d-flex">
             <Form.Control
               type="search"
               placeholder="Enter name to find ID"
@@ -48,7 +48,7 @@ function App() {
               aria-label="Search"
             />
             <Button variant="outline-success">Search</Button>
-          </Form>
+          </Form> */}
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -60,7 +60,7 @@ function App() {
       <Route path="/adding" element={<Adding />} />
       <Route path="/update" element={<Update />} />
       <Route path="/deleteList" element={<DeleteList />} />
-      <Route path="/listItems" element={<ListItems />} />
+      {/* <Route path="/listItems" element={<ListItems />} /> */}
       <Route path="/viewPrs" element={<ViewPrs />} />
     </Routes>
 
