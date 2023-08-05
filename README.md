@@ -15,6 +15,8 @@ A program for users to track their PRs in the gym!
 
 ### The database used was MongoDB. MongoDB was the first step I started with and had the most issues with mostly because of my lack of knowledge on using Motor, but besides that the Database part was a good experience.
 
+### Also I would like to add as a side note, I learned a lot about Python's virtual env after this project. I know now that it is better to use virtual env to avoid clashing with different versions of the modules and different versions of Python. I learned how to pip freeze and set up different virtual env on different computers as well in this process.
+
 ## Summary - I learned how to connect and put together a full-stack project using Quart, React and MongoDB. This is was Summer personal project that I wanted to put together just to learn - towards the end of the Summer, I had to time crunch a lot of things due to homework/assignments/test and Fall semester starting again so a couple features were cut however I plan to come back to re-create the frontend aspect because I am not totally happy with it.
 
 # This is Version 1, I plan to redo the project, specifically the frontend in the future.
